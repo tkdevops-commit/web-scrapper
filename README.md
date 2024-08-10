@@ -29,6 +29,4 @@ This project is a simple web scraper built using Node.js and Cheerio. It fetches
 2. Navigate to the project directory.
 3. Install the required dependencies:
 
-   ```bash
-   npm install axios cheerio
-![image](https://github.com/user-attachments/assets/f6e76e22-3238-4c27-90c0-db3e73c971b3)
+
