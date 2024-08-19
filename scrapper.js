@@ -8,8 +8,8 @@ axios.get(url)
     const html = response.data;
     const $ = cheerio.load(html);
     
-    // scraps data (titles) that sit in h2 tags
-    $('h2').each((index, element) => {
+    // Scrapes data (titles) from all heading tags (h1, h2, h3, h4, h5, h6)
+    $('h1, h2, h3, h4, h5, h6').each((index, element) => {
       const title = $(element).text();
       console.log(title);
     });
