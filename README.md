@@ -1,6 +1,6 @@
 # Web Scraper with Node.js and Cheerio
 
-This project is a simple web scraper built using Node.js and Cheerio. It fetches the HTML content of a given URL and extracts the text of all `<h2>` elements on the page
+This project is a simple web scraper built using Node.js and Cheerio. It fetches the HTML content of a given URL and extracts the text of all `<h>` elements on the page
 
 ## Prerequisites
 
