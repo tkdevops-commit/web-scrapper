@@ -40,6 +40,46 @@ axios.get(url)
       scrapedData.push({ type: 'image', alt: altText, url: imgSrc });
     });
 
+    // Scraping data from all ordered lists (ol)
+    $('ol').each((index, element) => {
+      const listItems = [];
+      $(element).find('li').each((i, li) => {
+        listItems.push($(li).text().trim());
+      });
+      scrapedData.push({ type: 'ordered_list', items: listItems });
+    });
+
+    // Scraping data from all unordered lists (ul)
+    $('ul').each((index, element) => {
+      const listItems = [];
+      $(element).find('li').each((i, li) => {
+        listItems.push($(li).text().trim());
+      });
+      scrapedData.push({ type: 'unordered_list', items: listItems });
+    });
+
+    // Scraping data from all tables
+    $('table').each((index, element) => {
+      const table = [];
+      $(element).find('tr').each((i, row) => {
+        const rowData = [];
+        $(row).find('th, td').each((j, cell) => {
+          rowData.push($(cell).text().trim());
+        });
+        table.push(rowData);
+      });
+      scrapedData.push({ type: 'table', rows: table });
+    });
+
+    // Scraping metadata (meta tags)
+    $('meta').each((index, element) => {
+      const name = $(element).attr('name') || $(element).attr('property');
+      const content = $(element).attr('content');
+      if (name && content) {
+        scrapedData.push({ type: 'meta', name: name, content: content });
+      }
+    });
+
     // Writing the scraped data to a JSON file
     fs.writeFile('scrapedData.json', JSON.stringify(scrapedData, null, 2), (err) => {
       if (err) {
